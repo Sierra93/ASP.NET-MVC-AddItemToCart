@@ -1,0 +1,12 @@
+public RedirectToRouteResult AddToCart(Cart cart, int bookId, string returnUrl)
+        {
+            Book book = repository.Books
+                .FirstOrDefault(b => b.BookID == bookId);
+
+            if (book != null)
+            {
+                cart.AddItem(book, 1);
+            }
+
+            return RedirectToAction("Index", new { returnUrl });
+        }
